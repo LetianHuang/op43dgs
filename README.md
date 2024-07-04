@@ -30,7 +30,7 @@
 
 ## News
 
-**[2024.07.05]** Birthday of the page <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">.
+**[2024.07.05]** Birthday of the repository <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">.
 
 ## TODO List
 - [ ] Release the code.
