@@ -25,14 +25,11 @@
     <a href='https://letianhuang.github.io/op43dgs'><img src='https://img.shields.io/badge/Project-Page-Green'></a>  
 </div>
 
-
-
+</p>
 
 <p align="center">
 <img src="https://letianhuang.github.io/assets/img/fisheye.png" width=100% height=100% 
 class="center">
-</p>
-
 </p>
 
 ## News
