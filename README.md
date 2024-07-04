@@ -26,6 +26,8 @@
 </div>
 </p>
 
+![Teaser image](https://github.com/LetianHuang/LetianHuang.github.io/blob/main/op43dgs/resources/motivation.png)
+
 ## Citation
 
 ```BibTeX
