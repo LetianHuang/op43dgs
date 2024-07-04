@@ -28,6 +28,12 @@
 
 
 
+
+
+
+</p>
+
+<section class="hero teaser">
 <div class="container is-max-desktop">
     <div class="hero-body">
       <div class="columns is-centered has-text-centered">
@@ -42,9 +48,8 @@
       </div>
     </div>
   </div>
+</section>
 
-
-</p>
 
 ## Citation
 
