@@ -3,8 +3,7 @@
 <h3 align="center">ECCV 2024</h3>
 
 <p align="center">
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
+          <span class="author-block">
               <a href="https://letianhuang.github.io/">Letian Huang</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="author-block">
               <a href="https://scholar.google.com/citations?user=VmPQ6akAAAAJ&hl=zh-CN">Jiayang Bai</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -17,7 +16,6 @@
             <span class="author-block">
               <a href="https://cs.nju.edu.cn/ywguo/index.htm">Yanwen Guo</a>
             </span>
-          </div>
     <br>
         Nanjing University
 </p>
