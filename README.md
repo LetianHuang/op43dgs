@@ -24,9 +24,31 @@
     <a href=https://arxiv.org/abs/2402.00752><img src='https://img.shields.io/badge/arXiv-2402.00752-b31b1b.svg'></a>  
     <a href='https://letianhuang.github.io/op43dgs'><img src='https://img.shields.io/badge/Project-Page-Green'></a>  
 </div>
-</p>
 
-![Teaser image](https://github.com/LetianHuang/LetianHuang.github.io/blob/main/op43dgs/resources/motivation.png)
+
+
+<div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+
+            <video id="v0" width="100%" loop playsinline  autoplay loop muted controls >
+              <source src="https://github.com/LetianHuang/LetianHuang.github.io/tree/main/op43dgs/resources/camera_drjohnson.mp4" type="video/mp4" />
+            </video>
+
+            <video id="v0" width="100%" loop playsinline  autoplay loop muted controls >
+              <source src="https://github.com/LetianHuang/LetianHuang.github.io/tree/main/op43dgs/resources/camera_garden.mp4" type="video/mp4" />
+            </video>
+
+          <h2 class="subtitle has-text-centered" style="margin-top: 15px">
+            TL;DR: We propose an optimal projection strategy for 3D-GS based on the error analysis of local affine approximation, which can accommodate a variety of camera models and achieve a more convincingly realistic rendering.
+          </h2>
+        </div>
+      </div>
+    </div>
+</div>
+
+</p>
 
 ## Citation
 
