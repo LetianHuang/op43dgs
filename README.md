@@ -29,12 +29,8 @@
 </p>
 
 
-<p align="center">
-  <a href="">
-    <video id="v0" width="100%" loop playsinline  autoplay loop muted controls ><source src="resources/camera_drjohnson.mp4" type="video/mp4" /></video>
-    <video id="v0" width="100%" loop playsinline  autoplay loop muted controls ><source src="resources/camera_garden.mp4" type="video/mp4" /></video>
-  </a>
-</p>
+
+
 
 ## Citation
 
