@@ -26,30 +26,15 @@
 </div>
 
 
-
-
-
-
-
 </p>
 
-<section class="hero teaser">
-<div class="container is-max-desktop">
-    <div class="hero-body">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-full-width">
-              <video id="v0" width="100%" loop playsinline  autoplay loop muted controls >
-                  <source src="https://github.com/LetianHuang/LetianHuang.github.io/tree/main/op43dgs/resources/camera_drjohnson.mp4" type="video/mp4" />
-              </video>
-              <video id="v0" width="100%" loop playsinline  autoplay loop muted controls >
-                  <source src="https://github.com/LetianHuang/LetianHuang.github.io/tree/main/op43dgs/resources/camera_garden.mp4" type="video/mp4" />
-              </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
+<p align="center">
+  <a href="">
+    <video id="v0" width="100%" loop playsinline  autoplay loop muted controls ><source src="resources/camera_drjohnson.mp4" type="video/mp4" /></video>
+    <video id="v0" width="100%" loop playsinline  autoplay loop muted controls ><source src="resources/camera_garden.mp4" type="video/mp4" /></video>
+  </a>
+</p>
 
 ## Citation
 
