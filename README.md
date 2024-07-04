@@ -28,15 +28,15 @@
 
 
 
-
-<video id="v0" width="100%" loop playsinline  autoplay loop muted controls >
-    <source src="https://github.com/LetianHuang/LetianHuang.github.io/tree/main/op43dgs/resources/camera_drjohnson.mp4" type="video/mp4" />
-</video>
-
-<video id="v0" width="100%" loop playsinline  autoplay loop muted controls >
-    <source src="https://github.com/LetianHuang/LetianHuang.github.io/tree/main/op43dgs/resources/camera_garden.mp4" type="video/mp4" />
-</video>
-
+<div align="center">
+          <video id="v0" width="100%" loop playsinline  autoplay loop muted controls >
+              <source src="https://github.com/LetianHuang/LetianHuang.github.io/tree/main/op43dgs/resources/camera_drjohnson.mp4" type="video/mp4" />
+          </video>
+          
+          <video id="v0" width="100%" loop playsinline  autoplay loop muted controls >
+              <source src="https://github.com/LetianHuang/LetianHuang.github.io/tree/main/op43dgs/resources/camera_garden.mp4" type="video/mp4" />
+          </video>
+</div>
 
 
 </p>
