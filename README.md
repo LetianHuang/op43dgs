@@ -37,8 +37,9 @@ class="center">
 **[2024.07.05]** Birthday of the repository <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">.
 
 ## TODO List
-- [ ] Release the code.
+- [ ] Release the code (submodule for pinhole camera's rasterization).
 - [ ] Release the submodule for panorama's rasterization.
+- [ ] Code optimization (as mentioned in the limitation of the paper, the current CUDA implementation is slow and needs optimization).
 
 ## Motivation
 
