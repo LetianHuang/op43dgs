@@ -8,7 +8,7 @@
             <span class="author-block">
               <a href="https://scholar.google.com/citations?user=VmPQ6akAAAAJ&hl=zh-CN">Jiayang Bai</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="author-block">
-              <a href="https://scholar.google.com.hk/citations?user=Sx4PQpQAAAAJ&hl=en">Jie Guo</a>
+              <a href="https://scholar.google.com.hk/citations?user=Sx4PQpQAAAAJ&hl=en">Jie Guo<sup>*</sup></a>
             </span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="author-block">
               <a href="http://www.njumeta.com/liyq/">Yuanqi Li</a>
