@@ -143,6 +143,8 @@ This project is built upon [3DGS](https://github.com/graphdeco-inria/gaussian-sp
 
 ## Citation
 
+If you find this work useful in your research, please cite:
+
 ```bibtex
 @article{huang2024erroranalysis3dgaussian,
     title={On the Error Analysis of 3D Gaussian Splatting and an Optimal Projection Strategy},
