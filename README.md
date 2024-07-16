@@ -28,7 +28,7 @@
 </p>
 
 <p align="center">
-<img src="https://letianhuang.github.io/assets/img/fisheye.png" width=100% height=100% 
+<img src="https://github.com/LetianHuang/LetianHuang.github.io/blob/main/assets/img/fisheye.png" width=100% height=100% 
 class="center">
 </p>
 
