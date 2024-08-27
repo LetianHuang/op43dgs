@@ -101,19 +101,19 @@ class Scene:
                                                            "point_cloud.ply"))
         else:
             self.cameras_extent = scene_info.nerf_normalization["radius"]
-            (r""" few-pcds """)
             init_point_cloud = scene_info.point_cloud
-            if args.max_pcds > 0:
-                from scene.gaussian_model import BasicPointCloud
-                N = len(init_point_cloud.points)
-                max_pcds = min(N, args.max_pcds)
-                indices = np.linspace(0, N - 1, max_pcds).astype(np.int32)
-                init_point_cloud = BasicPointCloud(
-                    init_point_cloud.points[indices],
-                    init_point_cloud.colors[indices],
-                    init_point_cloud.normals[indices]
-                )
-            (r""" few-pcds """)
+            # (r""" few-pcds """)
+            # if args.max_pcds > 0:
+            #     from scene.gaussian_model import BasicPointCloud
+            #     N = len(init_point_cloud.points)
+            #     max_pcds = min(N, args.max_pcds)
+            #     indices = np.linspace(0, N - 1, max_pcds).astype(np.int32)
+            #     init_point_cloud = BasicPointCloud(
+            #         init_point_cloud.points[indices],
+            #         init_point_cloud.colors[indices],
+            #         init_point_cloud.normals[indices]
+            #     )
+            # (r""" few-pcds """)
 
             self.gaussians.create_from_pcd(init_point_cloud, self.cameras_extent)
 
