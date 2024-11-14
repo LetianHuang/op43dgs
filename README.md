@@ -136,7 +136,6 @@ python render.py -m <path to trained model> --fov_ratio 1 # Generate renderings
 
 </details>
 
-
 ## Acknowledgements
 
 This project is built upon [3DGS](https://github.com/graphdeco-inria/gaussian-splatting). Please follow the license of 3DGS. We thank all the authors for their great work and repos. 
@@ -153,3 +152,106 @@ If you find this work useful in your research, please cite:
     year={2024}
 }
 ```
+
+## Derivation in [diff-gaussian-rasterization](https://github.com/LetianHuang/op43dgs/tree/main/submodules/diff-gaussian-rasterization-pinhole)
+
+<p align="center">
+<img src="https://github.com/LetianHuang/op43dgs/blob/main/assets/derivation.png" width=100% height=100% 
+class="center">
+</p>
+
+
+### About gradients of Gaussians' position
+
+#### Given: 
+
+Gaussian mean in image space: $x, y$
+Projection coordinates of the pixel on the unit sphere (in `renderCUDA`): $t_x, t_y, t_z$
+Camera intrinsic parameters for pinhole: $f_x, f_y, c_x, c_y$
+
+
+#### Forward
+
+For the pinhole camera model, we can compute the corresponding camera coordinate based on the Gaussian position $x, y$ in image space:
+
+$$
+r_x = (x - c_x) / f_x,
+$$
+
+$$
+r_y = (x - c_y) / f_y,
+$$
+
+$$
+r_z = 1.
+$$ 
+
+Then, we can calculate the polar coordinates of the intersection point between the ray and the unit sphere:
+
+$$
+\theta=atan_{2}{\left(- r_{y},\sqrt{r_{x}^{2} + 1} \right)},
+$$
+
+$$
+\phi=atan_{2}{\left(r_{x},r_z \right)}.
+$$
+
+Subsequently, the projection of the pixel onto the tangent plane can be obtained (already has been transformed into the local coordinate system  through the $\mathbf{Q}$ matrix; The origin of the local coordinate system is the projection of the Gaussian mean onto the tangent plane):
+
+$$
+u_{pixf}=-\frac{f_{x} \left(r_{x} t_{z} - t_{x}\right)}{\sqrt{r_{x}^{2} + 1} \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right)},
+$$
+
+$$
+v_{pixf}=-\frac{f_{y} \left(r_{y} \left(r_{x} t_{x} + t_{z}\right) - t_{y} \left(r_{x}^{2} + 1\right)\right)}{\sqrt{r_{x}^{2} + 1} \sqrt{r_{x}^{2} + r_{y}^{2} + 1} \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right)}.
+$$
+
+Finally, the difference between the projection of the Gaussian mean and the pixel projection onto the tangent plane can be calculated:
+
+$$
+d_x = \frac{f_{x} \left(r_{x} t_{z} - t_{x}\right)}{\sqrt{r_{x}^{2} + 1} \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right)},
+$$
+
+$$
+d_y = \frac{f_{y} \left(r_{y} \left(r_{x} t_{x} + t_{z}\right) - t_{y} \left(r_{x}^{2} + 1\right)\right)}{\sqrt{r_{x}^{2} + 1} \sqrt{r_{x}^{2} + r_{y}^{2} + 1} \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right)}.
+$$
+
+#### Backward
+
+**It is recommended to use scientific computing tools to compute the gradient!**
+
+First, calculate the partial derivatives of $d_x, d_y$ with respect to $r_x, r_y$:
+
+$$
+\frac{\partial d_x}{\partial r_x}=\frac{f_{x} \left(- r_{x} \left(r_{x} t_{z} - t_{x}\right) \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right) - t_{x} \left(r_{x}^{2} + 1\right) \left(r_{x} t_{z} - t_{x}\right) + t_{z} \left(r_{x}^{2} + 1\right) \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right)\right)}{\left(r_{x}^{2} + 1\right)^{\frac{3}{2}} \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right)^{2}},
+$$
+
+$$
+\frac{\partial d_x}{\partial r_y}=- \frac{f_{x} t_{y} \left(r_{x} t_{z} - t_{x}\right)}{\sqrt{r_{x}^{2} + 1} \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right)^{2}},
+$$
+
+$$
+\frac{\partial d_y}{\partial r_x}=\frac{f_{y} \left(- r_{x} \left(r_{x}^{2} + 1\right) \left(r_{y} \left(r_{x} t_{x} + t_{z}\right) - t_{y} \left(r_{x}^{2} + 1\right)\right) \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right) - r_{x} \left(r_{y} \left(r_{x} t_{x} + t_{z}\right) - t_{y} \left(r_{x}^{2} + 1\right)\right) \left(r_{x}^{2} + r_{y}^{2} + 1\right) \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right) - t_{x} \left(r_{x}^{2} + 1\right) \left(r_{y} \left(r_{x} t_{x} + t_{z}\right) - t_{y} \left(r_{x}^{2} + 1\right)\right) \left(r_{x}^{2} + r_{y}^{2} + 1\right) - \left(r_{x}^{2} + 1\right) \left(2 r_{x} t_{y} - r_{y} t_{x}\right) \left(r_{x}^{2} + r_{y}^{2} + 1\right) \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right)\right)}{\left(r_{x}^{2} + 1\right)^{\frac{3}{2}} \left(r_{x}^{2} + r_{y}^{2} + 1\right)^{\frac{3}{2}} \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right)^{2}},
+$$
+
+$$
+\frac{\partial d_y}{\partial r_y}=\frac{f_{y} \left(- r_{y} \left(r_{y} \left(r_{x} t_{x} + t_{z}\right) - t_{y} \left(r_{x}^{2} + 1\right)\right) \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right) - t_{y} \left(r_{y} \left(r_{x} t_{x} + t_{z}\right) - t_{y} \left(r_{x}^{2} + 1\right)\right) \left(r_{x}^{2} + r_{y}^{2} + 1\right) + \left(r_{x} t_{x} + t_{z}\right) \left(r_{x}^{2} + r_{y}^{2} + 1\right) \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right)\right)}{\sqrt{r_{x}^{2} + 1} \left(r_{x}^{2} + r_{y}^{2} + 1\right)^{\frac{3}{2}} \left(r_{x} t_{x} + r_{y} t_{y} + t_{z}\right)^{2}}.
+$$
+
+Then, calculate the gradient of $r_x, r_y$ with respect to $x, y$:
+
+$$
+\frac{\partial r_x}{x}=1 / f_x,\quad \frac{\partial r_y}{y}=1 / f_y.
+$$
+
+Using the chain rule, we can obtain:
+
+$$
+\frac{\partial d_x}{x}=\frac{\partial d_x}{\partial r_x}\frac{\partial r_x}{x},
+\frac{\partial d_x}{y}=\frac{\partial d_x}{\partial r_y}\frac{\partial r_y}{y},
+$$
+
+$$
+\frac{\partial d_y}{x}=\frac{\partial d_y}{\partial r_x}\frac{\partial r_x}{x},
+\frac{\partial d_y}{y}=\frac{\partial d_y}{\partial r_y}\frac{\partial r_y}{y}.
+$$
