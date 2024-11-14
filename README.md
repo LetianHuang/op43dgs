@@ -245,17 +245,17 @@ $$
 Then, calculate the gradient of $r_x, r_y$ with respect to $x, y$:
 
 $$
-\frac{\partial r_x}{x}=1 / f_x,\quad \frac{\partial r_y}{y}=1 / f_y.
+\frac{\partial r_x}{\partial x}=1 / f_x,\quad \frac{\partial r_y}{\partial y}=1 / f_y.
 $$
 
 Using the chain rule, we can obtain:
 
 $$
-\frac{\partial d_x}{x}=\frac{\partial d_x}{\partial r_x}\frac{\partial r_x}{x},
-\frac{\partial d_x}{y}=\frac{\partial d_x}{\partial r_y}\frac{\partial r_y}{y},
+\frac{\partial d_x}{\partial x}=\frac{\partial d_x}{\partial r_x}\frac{\partial r_x}{x},
+\frac{\partial d_x}{\partial y}=\frac{\partial d_x}{\partial r_y}\frac{\partial r_y}{y},
 $$
 
 $$
-\frac{\partial d_y}{x}=\frac{\partial d_y}{\partial r_x}\frac{\partial r_x}{x},
-\frac{\partial d_y}{y}=\frac{\partial d_y}{\partial r_y}\frac{\partial r_y}{y}.
+\frac{\partial d_y}{\partial x}=\frac{\partial d_y}{\partial r_x}\frac{\partial r_x}{x},
+\frac{\partial d_y}{\partial y}=\frac{\partial d_y}{\partial r_y}\frac{\partial r_y}{y}.
 $$
