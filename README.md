@@ -190,16 +190,6 @@ $$
 r_z = 1.
 $$ 
 
-Then, we can calculate the polar coordinates of the intersection point between the ray and the unit sphere:
-
-$$
-\theta=atan_{2}{\left(- r_{y},\sqrt{r_{x}^{2} + 1} \right)},
-$$
-
-$$
-\phi=atan_{2}{\left(r_{x},r_z \right)}.
-$$
-
 Subsequently, the projection of the pixel onto the tangent plane can be obtained (already has been transformed into the local coordinate system  through the $\mathbf{Q}$ matrix; The origin of the local coordinate system is the projection of the Gaussian mean onto the tangent plane):
 
 $$
