@@ -162,3 +162,103 @@ If you find this work useful in your research, please cite:
 class="center">
 </p>
 
+### About gradients of Gaussian's position
+
+#### Given: 
+Gaussian's position in image space: $u, v$
+Projection coordinates of the pixel on the unit sphere (in `renderCUDA`): $t_x, t_y, t_z$
+Camera intrinsic parameters for pinhole: $f_x, f_y, c_x, c_y$
+
+#### Forward
+For the pinhole camera model, we can compute the corresponding camera coordinate based on the Gaussian position $x, y$ in image space:
+
+$$
+r_x = (u - c_x) / f_x,
+$$
+
+$$
+r_y = (v - c_y) / f_y,
+$$
+
+$$
+r_z = 1.
+$$ 
+
+Then calculate the projection of $[r_x, r_y, r_z]^{\top}$ on the unit sphere:
+
+$$
+\mu_x = \frac{r_{x}}{\sqrt{r_{x}^{2} + r_{y}^{2} + r_{z}^{2}}},
+$$
+
+$$
+\mu_y = \frac{r_{y}}{\sqrt{r_{x}^{2} + r_{y}^{2} + r_{z}^{2}}},
+$$
+
+$$
+\mu_z = \frac{r_{z}}{\sqrt{r_{x}^{2} + r_{y}^{2} + r_{z}^{2}}},
+$$
+
+Subsequently, calculate the projection of $[t_x, t_y, t_z]^{\top}$ on the tangent plane $\mu_x x+\mu_y y+\mu_z z = 1$ :
+
+$$
+\mathbf{x}_{2D}=\begin{bmatrix} \frac{t_x}{\mu_x t_x + \mu_y t_y + \mu_z t_z} \newline \frac{t_y}{\mu_x t_x + \mu_y t_y + \mu_z t_z} \newline \frac{t_z}{\mu_x t_x + \mu_y t_y + \mu_z t_z}
+\end{bmatrix}
+$$
+
+Then, calculate the matrix $\mathbf{Q}$ based on Equation 18 in the paper:
+
+$$
+\mathbf{Q}=\begin{bmatrix}
+\frac{\mu_{z}}{\sqrt{\mu_{x}^{2} + \mu_{z}^{2}}} & 0 & - \frac{\mu_{x}}{\sqrt{\mu_{x}^{2} + \mu_{z}^{2}}} \newline  - \frac{\mu_{x} \mu_{y}}{\sqrt{\mu_{x}^{2} + \mu_{z}^{2}} \sqrt{\mu_{x}^{2} + \mu_{y}^{2} + \mu_{z}^{2}}} & \frac{\sqrt{\mu_{x}^{2} + \mu_{z}^{2}}}{\sqrt{\mu_{x}^{2} + \mu_{y}^{2} + \mu_{z}^{2}}} & - \frac{\mu_{y} \mu_{z}}{\sqrt{\mu_{x}^{2} + \mu_{z}^{2}} \sqrt{\mu_{x}^{2} + \mu_{y}^{2} + \mu_{z}^{2}}} \newline   \frac{\mu_{x}}{\sqrt{\mu_{x}^{2} + \mu_{y}^{2} + \mu_{z}^{2}}} & \frac{\mu_{y}}{\sqrt{\mu_{x}^{2} + \mu_{y}^{2} + \mu_{z}^{2}}} & \frac{\mu_{z}}{\sqrt{\mu_{x}^{2} + \mu_{y}^{2} + \mu_{z}^{2}}}\end{bmatrix}\text{.}
+$$
+
+Subsequently, the projection of the pixel onto the tangent plane after transformerd into the local coordinate system can be obtained through the $\mathbf{Q}$ matrix (The origin of the local coordinate system is the projection of the Gaussian mean onto the tangent plane):
+
+$$
+\begin{bmatrix} u_{pixf} \newline v_{pixf} \newline 1 \end{bmatrix}=\mathbf{Q}\mathbf{x}_{2D}
+$$
+
+$$
+=\begin{bmatrix}\frac{- \mu_{x} t_{z} + \mu_{z} t_{x}}{\sqrt{\mu_{x}^{2} + \mu_{z}^{2}} \left(\mu_{x} t_{x} + \mu_{y} t_{y} + \mu_{z} t_{z}\right)} \newline  \frac{- \mu_{y} \left(\mu_{x} t_{x} + \mu_{z} t_{z}\right) + t_{y} \left(\mu_{x}^{2} + \mu_{z}^{2}\right)}{\sqrt{\mu_{x}^{2} + \mu_{z}^{2}} \sqrt{\mu_{x}^{2} + \mu_{y}^{2} + \mu_{z}^{2}} \left(\mu_{x} t_{x} + \mu_{y} t_{y} + \mu_{z} t_{z}\right)} \newline 1\end{bmatrix}. 
+$$
+
+Finally, the difference between the projection of the Gaussian mean and the pixel projection onto the tangent plane can be calculated:
+
+$$
+d_x = -u_{pixf},\quad d_y = -v_{pixf}
+$$
+
+#### Backward
+
+**It is recommended to use scientific computing tools to compute the gradient!**
+
+First, calculate the partial derivatives of $d_x, d_y$ with respect to $r_x, r_y$:
+
+$$
+\frac{\partial d_x}{\partial r_x}=\frac{\partial d_x}{\partial \mu_x}\frac{\partial \mu_x}{\partial r_x}+\frac{\partial d_x}{\partial \mu_y}\frac{\partial \mu_x}{\partial r_x}+\frac{\partial d_x}{\partial \mu_z}\frac{\partial \mu_z}{\partial r_x},\quad
+\frac{\partial d_x}{\partial r_y}=\frac{\partial d_x}{\partial \mu_x}\frac{\partial \mu_x}{\partial r_y}+\frac{\partial d_x}{\partial \mu_y}\frac{\partial \mu_x}{\partial r_y}+\frac{\partial d_x}{\partial \mu_z}\frac{\partial \mu_z}{\partial r_y},
+$$
+
+$$
+\frac{\partial d_y}{\partial r_x}=\frac{\partial d_y}{\partial \mu_x}\frac{\partial \mu_x}{\partial r_x}+\frac{\partial d_y}{\partial \mu_y}\frac{\partial \mu_x}{\partial r_x}+\frac{\partial d_y}{\partial \mu_z}\frac{\partial \mu_z}{\partial r_x},\quad
+\frac{\partial d_y}{\partial r_y}=\frac{\partial d_y}{\partial \mu_x}\frac{\partial \mu_x}{\partial r_y}+\frac{\partial d_y}{\partial \mu_y}\frac{\partial \mu_x}{\partial r_y}+\frac{\partial d_y}{\partial \mu_z}\frac{\partial \mu_z}{\partial r_y}.
+$$
+
+Then, calculate the gradient of $r_x, r_y$ with respect to $u, v$ (**gradients related to the camera model**):
+
+$$
+\frac{\partial r_x}{\partial u}=1 / f_x,\quad \frac{\partial r_y}{\partial v}=1 / f_y.
+$$
+
+Using the chain rule, we can obtain:
+
+$$
+\frac{\partial d_x}{\partial u}=\frac{\partial d_x}{\partial r_x}\frac{\partial r_x}{\partial u}, \quad
+\frac{\partial d_x}{\partial v}=\frac{\partial d_x}{\partial r_y}\frac{\partial r_y}{\partial v},
+$$
+
+$$
+\frac{\partial d_y}{\partial u}=\frac{\partial d_y}{\partial r_x}\frac{\partial r_x}{\partial u}, \quad
+\frac{\partial d_y}{\partial v}=\frac{\partial d_y}{\partial r_y}\frac{\partial r_y}{\partial v}.
+$$
+
