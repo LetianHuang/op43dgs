@@ -166,7 +166,9 @@ class="center">
 
 #### Given: 
 Gaussian's position in image space: $u, v$
+
 Projection coordinates of the pixel on the unit sphere (in `renderCUDA`): $t_x, t_y, t_z$
+
 Camera intrinsic parameters for pinhole: $f_x, f_y, c_x, c_y$
 
 #### Forward
