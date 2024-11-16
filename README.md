@@ -172,7 +172,7 @@ Projection coordinates of the pixel on the unit sphere (in `renderCUDA`): $t_x, 
 Camera intrinsic parameters for pinhole: $f_x, f_y, c_x, c_y$
 
 #### Forward
-For the pinhole camera model, we can compute the corresponding camera coordinate based on the Gaussian position $x, y$ in image space:
+For the pinhole camera model, we can compute the corresponding camera coordinate based on the Gaussian position $u, v$ in image space:
 
 $$
 r_x = (u - c_x) / f_x,
