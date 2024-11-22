@@ -149,11 +149,15 @@ This project is built upon [3DGS](https://github.com/graphdeco-inria/gaussian-sp
 If you find this work useful in your research, please cite:
 
 ```bibtex
-@article{huang2024erroranalysis3dgaussian,
-    title={On the Error Analysis of 3D Gaussian Splatting and an Optimal Projection Strategy},
-    author={Letian Huang and Jiayang Bai and Jie Guo and Yuanqi Li and Yanwen Guo},
-    journal={arXiv preprint arXiv:2402.00752},
-    year={2024}
+@inproceedings{10.1007/978-3-031-72643-9_15,
+    author="Huang, Letian and Bai, Jiayang and Guo, Jie and Li, Yuanqi and Guo, Yanwen",
+    title="On the Error Analysis of 3D Gaussian Splatting and an Optimal Projection Strategy",
+    booktitle="Computer Vision -- ECCV 2024",
+    year="2025",
+    publisher="Springer Nature Switzerland",
+    address="Cham",
+    pages="247--263",
+    isbn="978-3-031-72643-9"
 }
 ```
 
