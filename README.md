@@ -38,7 +38,9 @@ class="center">
 
 **[2025.07.09]** We release the submodule for the fisheye camera's rasterization.
 
-**[2025.05.××]** 🎈 Our new work, [TransparentGS](https://letianhuang.github.io/transparentgs/), based on this repo, has been accepted by SIGGRAPH 2025. 
+**[2025.05.××]** 🎈 Our new work, [TransparentGS](https://letianhuang.github.io/transparentgs/), based on this repo, has been accepted by [SIGGRAPH 2025](https://s2025.conference-schedule.org/presentation/?id=papers_825&sess=sess125). 
+
+**[2024.12.25]** 🎈 Our work, [360-GS](https://openreview.net/attachment?id=PyCoMnd5P4&name=pdf), based on this repo, has been accepted by [3DV 2025](https://3dvconf.github.io/2025/accepted-papers/). 
 
 **[2024.11.14]** 🖊️ Add derivation of the backward passes.
 
