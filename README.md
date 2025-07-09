@@ -36,6 +36,10 @@ class="center">
 
 ## News
 
+**[2025.07.09]** We release the submodule for the fisheye camera's rasterization.
+
+**[2025.05.××]** 🎈 Our new work, [TransparentGS](https://letianhuang.github.io/transparentgs/), based on this repo, has been accepted by SIGGRAPH 2025. 
+
 **[2024.11.14]** 🖊️ Add derivation of the backward passes.
 
 **[2024.07.16]** 🎈 We release the code.
@@ -45,7 +49,7 @@ class="center">
 ## TODO List
 - [x] Release the code (submodule for the pinhole camera's rasterization).
 - [x] Release the submodule for the panorama's rasterization.
-- [ ] Release the submodule for the fisheye camera's rasterization.
+- [x] Release the submodule for the fisheye camera's rasterization.
 - [ ] Code optimization (as mentioned in the limitation of the paper, the current CUDA implementation is slow and needs optimization).
 
 
