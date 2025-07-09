@@ -29,10 +29,7 @@
 
 </p>
 
-<p align="center">
-<img src="https://github.com/LetianHuang/LetianHuang.github.io/blob/main/assets/img/fisheye.png" width=100% height=100% 
-class="center">
-</p>
+![teaser](https://github.com/LetianHuang/LetianHuang.github.io/blob/main/assets/img/fisheye.png)
 
 ## News
 
@@ -57,19 +54,13 @@ class="center">
 
 ## Motivation
 
-<p align="center">
-<img src="https://letianhuang.github.io/op43dgs/resources/motivation.png" width=100% height=100% 
-class="center">
-</p>
+![motivation](https://letianhuang.github.io/op43dgs/resources/motivation.png)
 
 We derive the mathematical expectation of the projection error (Top left), visualize the graph of the error function under two distinct domains and analyze when this function takes extrema through methods of function optimization (Top right). We further derive the projection error function with respect to image coordinates and focal length through the coordinate transformation between image coordinates and polar coordinates and visualize this function, with the left-to-right sequence corresponding to the 3D-GS rendered images under long focal length, 3D-GS rendered images under short focal length, the error function under long focal length, and the error function under short focal length (Below).
 
 ## Pipeline
 
-<p align="center">
-<img src="https://letianhuang.github.io/op43dgs/resources/optimal_proj.png" width=100% height=100% 
-class="center">
-</p>
+![method](https://letianhuang.github.io/op43dgs/resources/optimal_proj.png)
 
 Illustration of the rendering pipeline for our Optimal Gaussian Splatting and the projection of 3D Gaussian Splatting. The blue box depicts the projection process of the original 3D-GS, which straightforwardly projects all Gaussians onto the same projection plane. In contrast, the red box illustrates our approach, where we project individual Gaussians onto corresponding tangent planes.
 
@@ -169,10 +160,7 @@ If you find this work useful in your research, please cite:
 
 ## Derivation in [diff-gaussian-rasterization](https://github.com/LetianHuang/op43dgs/tree/main/submodules/diff-gaussian-rasterization-pinhole)
 
-<p align="center">
-<img src="https://github.com/LetianHuang/op43dgs/blob/main/assets/derivation.png" width=100% height=100% 
-class="center">
-</p>
+![derivation](https://github.com/LetianHuang/op43dgs/blob/main/assets/derivation.png)
 
 ### About gradients of Gaussian's position
 
