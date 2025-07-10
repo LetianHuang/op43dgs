@@ -5,11 +5,15 @@ Used as the rasterization engine for the paper "On the Error Analysis of 3D Gaus
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code></code>@article{huang2024erroranalysis3dgaussian,
-    title={On the Error Analysis of 3D Gaussian Splatting and an Optimal Projection Strategy},
-    author={Letian Huang and Jiayang Bai and Jie Guo and Yuanqi Li and Yanwen Guo},
-    journal={arXiv preprint arXiv:2402.00752},
-    year={2024}
+    <pre><code></code>@inproceedings{10.1007/978-3-031-72643-9_15,
+    author="Huang, Letian and Bai, Jiayang and Guo, Jie and Li, Yuanqi and Guo, Yanwen",
+    title="On the Error Analysis of 3D Gaussian Splatting and an Optimal Projection Strategy",
+    booktitle="Computer Vision -- ECCV 2024",
+    year="2025",
+    publisher="Springer Nature Switzerland",
+    address="Cham",
+    pages="247--263",
+    isbn="978-3-031-72643-9"
 }</pre>
   </div>
 </section>
