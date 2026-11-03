@@ -15,6 +15,12 @@
 #include "config.h"
 #include "stdio.h"
 
+#if defined(USE_ROCM)
+// HIP/ROCm has no __trap() device intrinsic; __builtin_trap() is the clang
+// device-callable equivalent (illegal-instruction trap, like CUDA __trap()).
+#define __trap __builtin_trap
+#endif
+
 #define BLOCK_SIZE (BLOCK_X * BLOCK_Y)
 #define NUM_WARPS (BLOCK_SIZE/32)
 

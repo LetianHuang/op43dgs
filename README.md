@@ -98,6 +98,29 @@ or
 pip install submodules/diff-gaussian-rasterization-fisheye
 ```
 
+### AMD GPUs (ROCm)
+
+The submodules also build on AMD GPUs, through the HIP support in PyTorch.
+
+Do not use `environment.yml` on ROCm: it pins `cudatoolkit` and a CUDA build of PyTorch. Create the environment with a ROCm build of PyTorch instead (pick the ROCm version from https://pytorch.org/get-started/locally/), then install the submodules against it. That selector and the wheel index used below cover Linux only; on Windows, install a Windows ROCm build of PyTorch from a source that ships one and then follow the same steps.
+
+```shell
+conda create -n op43dgs python=3.12
+conda activate op43dgs
+pip install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.4
+pip install plyfile tqdm
+
+SET DISTUTILS_USE_SDK=1 # Windows only
+export PYTORCH_ROCM_ARCH=gfx1100 # on Windows: SET PYTORCH_ROCM_ARCH=gfx1100
+
+pip install submodules/simple-knn --no-build-isolation --no-deps
+pip install submodules/diff-gaussian-rasterization-pinhole --no-build-isolation --no-deps
+```
+
+Set `PYTORCH_ROCM_ARCH` to your GPU's `gfx` id. Left unset, the default depends on the PyTorch version: recent versions build for the visible GPUs, while older ones build for the architectures the installed PyTorch itself was built for, which need not include your GPU. Setting it explicitly is reliable across versions.
+
+`--no-build-isolation` is required because each submodule's `setup.py` imports `torch` at build time and an isolated build environment does not have it; `--no-deps` then keeps the install from adding anything alongside the ROCm PyTorch. Use `-panorama` or `-fisheye` in place of `-pinhole` for the other camera models; the three rasterizers install the same `diff_gaussian_rasterization` module, so uninstall one before installing another.
+
 ## Dataset
 
 ### Mip-NeRF 360 Dataset

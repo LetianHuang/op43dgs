@@ -1,0 +1,15 @@
+# Build artifacts from the torch CUDAExtension build and ROCm hipify.
+# hipify mirrors each .cu/.cuh into a *.hip / hip_rasterizer/ tree and the
+# extension build emits build/ and *.egg-info; none of these are source.
+build/
+*.egg-info/
+*.hip
+*_hip.cuh
+hip_rasterizer/
+__pycache__/
+*.pyc
+*.so
+
+# Local snapshots the rasterizer writes on a debug exception.
+snapshot_fw.dump
+snapshot_bw.dump
